@@ -22,15 +22,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         transform: GenericBLOC.changeValues(
             HomePageBloc.xoffSet, HomePageBloc.yoffSet, HomePageBloc.angle),
         duration: GenericBLOC.setDuration(
-            RuntimeVariables.homePageSpeedUserInput?? Constants.HOME_SCREEN_DURATION
-                ),
+            RuntimeVariables.homePageSpeedUserInput ??
+                Constants.HOME_SCREEN_DURATION),
         child: ClipRRect(
           borderRadius: GenericBLOC.getBorderRadius(),
           child: Stack(
             children: [
               widget.body ?? Container(),
               SafeArea(
-                child: HomePageBloc.isOpen ? _closeButton() : _openButton(),
+                child: RuntimeVariables.hideDrawerButton
+                    ? Container()
+                    : HomePageBloc.isOpen
+                        ? _closeButton()
+                        : _openButton(),
               )
             ],
           ),

@@ -8,6 +8,9 @@ import 'home_page.dart';
 import 'third_layer.dart';
 
 class AnimatedDrawer extends StatefulWidget {
+  ///Hide the drawer button
+  final bool hideDrawerButton;
+
   ///Gradient for First Layer background color.
   final Gradient backgroundGradient;
 
@@ -80,6 +83,7 @@ class AnimatedDrawer extends StatefulWidget {
       @required this.menuPageContent,
       @required this.homePageContent,
       @required this.shadowColor,
+      this.hideDrawerButton,
       this.openIcon,
       this.closeIcon,
       this.homePageXValue,
@@ -100,6 +104,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawer> {
   Widget build(BuildContext context) {
     GenericBLOC().initSize(context);
     RuntimeVariables().runTimeSetValues(
+        hideButton: widget.hideDrawerButton,
         backgroundGradient: widget.backgroundGradient,
         homeX: widget.homePageXValue,
         homeY: widget.homePageYValue,
@@ -125,7 +130,9 @@ class _AnimatedDrawerState extends State<AnimatedDrawer> {
           bgColor: widget.shadowColor,
         ),
         ThirdLayer(menu: widget.menuPageContent),
-        HomePage(body: widget.homePageContent),
+        HomePage(
+          body: widget.homePageContent,
+        ),
       ],
     );
   }

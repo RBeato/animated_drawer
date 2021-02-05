@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RuntimeVariables {
+  ///Hide button
+  static bool hideDrawerButton = false;
+
   ///X-Axis offset value of HomePage defined at runtime by user. This will be used if the user has passed it in the cosntructor. If user has not passed it in the constructor, than value from the constants is used.
 
   static double homePageXUserInput;
@@ -46,7 +49,8 @@ class RuntimeVariables {
   ///This function will assign values for all the arguments which are passed by user at runtime.F
 
   void runTimeSetValues(
-      {double homeX,
+      {bool hideButton,
+      double homeX,
       double homeY,
       double homeAngle,
       double shadowX,
@@ -57,6 +61,7 @@ class RuntimeVariables {
       LinearGradient backgroundGradient,
       Widget openIcon,
       Widget closeIcon}) {
+    hideDrawerButton = hideButton;
     homePageXUserInput = homeX;
     homePageYUserInput = homeY;
     homePageAngleUserInput = homeAngle;
